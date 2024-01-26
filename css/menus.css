@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0 auto;
+}
+
+/* Estilo para la tabla de AJAX novedades */
+.tabla-ajax-novedades table {
+    width: 100%;
+    text-align: center;
+    padding: 2px 5px;
+    background-image: url('../img/fondoajax.jpg');
+    background-size: cover;
+}
+
+th {
+    color: #FF007F;
+    font-size: 18px;
+}
+
+/* Estilo para la barra de navegación */
+nav {
+    background-color: #AA8F66;
+    color: #fff;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: palevioletred 3px solid;
+}
+
+.bienvenido {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size:18px;
+    gap: 10px;
+    padding: 10px;
+}
+
+.conexion {
+    background-color: #fff;
+    color: #FF007F;
+    font-size: 18px;
+}
+
+nav img {
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+}
+
+.logo-usuario {
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.enlaces {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.busqueda {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 4;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    background-color: #AA8F66;
+}
+
+.campo-busqueda {
+    color: white;
+    font-weight: bold;
+    text-align:center;
+}
+
+.busqueda select {
+    width: 80%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 3px solid #AA8F66;
+    border-radius: 5px;
+    background-color:white;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+    margin: 10px;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.title {
+    text-align: center;
+}
+
+button {
+    background-color: #FF007F;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: lightgreen;
+    color: #fff;
+}
+
+/* Mensaje de confirmacion o errores */
+.mensaje {
+    background-color: rgba(255, 119, 162, 0.7);
+    color: red;
+    padding: 10px 20px;
+    font-size: 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+/* Grid principal animales  */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.grid-item {
+    border: 1px solid #AA8F66;
+    padding: 20px;
+    text-align: center;
+    border:palevioletred  1px solid;
+}
+
+/* Grid funciones de administrador */
+.funciones-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-areas:
+        "insertar actualizar insertar-xml eliminar";
+    height: 100%;
+    margin: 0 auto;
+}
+
+.insertar {
+    grid-area: insertar;
+}
+
+.insertar-xml {
+    grid-area: insertar-xml;
+}
+
+.actualizar {
+    grid-area: actualizar;
+
+}
+
+.eliminar {
+    grid-area: eliminar;
+
+}
+
+.funciones-admin form {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #FF007F;
+    border-radius: 5px;
+}
+
+.funciones-admin label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.funciones-admin input,
+.funciones-admin select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #AA8F66;
+    border-radius: 5px;
+
+}
+
+.funciones-admin h4 {
+    text-decoration-style: solid;
+    color: #FF007F;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.funciones-admin input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    width: 100px;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.funciones-admin>div {
+    text-align: center;
+}
+
+.insertar,
+.insertar-xml,
+.actualizar,
+.eliminar {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #AA8F66;
+    color: #fff;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: palevioletred 3px solid;
+    height: 50px;
+}

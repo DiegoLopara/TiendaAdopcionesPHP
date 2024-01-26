@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mascotas>
+    <mascota id="67" foto="img/47.jpg">
+        <nombre>Snaky</nombre>
+        <tipo>Serpiente</tipo>
+        <raza>cobra</raza>
+        <edad>1</edad>
+        <id_dueño>2</id_dueño>
+        <color>verde</color>
+        <tamaño>grande</tamaño>
+    </mascota>
+
+    <mascota id="68" foto="img/48.jpg">
+        <nombre>Kunfi</nombre>
+        <tipo>Oso</tipo>
+        <raza>Panda</raza>
+        <edad>2</edad>
+        <id_dueño>1</id_dueño>
+        <color>blanco y negro</color>
+        <tamaño>grande</tamaño>
+    </mascota>
+</mascotas>
+
+   
