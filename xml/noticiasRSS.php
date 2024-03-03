@@ -17,13 +17,15 @@
     $db = new Database();
     $result = $db->ejecutarConsulta($query);
 
+    //header("Content-type: text/xml; encoding='utf-8'");
+
     // Encabezado del feed RSS
     echo '<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
     <channel>
         <title>Tu Protectora de Animales</title>
-        <link>www.tiendaadopciones.com</link><br>
-        <description>Noticias sobre adopciones y nuevas mascotas en la protectora</description><br><br>
+        <link>www.tiendaadopciones.com</link>
+        <description>Noticias sobre adopciones y nuevas mascotas en la protectora</description>
         <language>es-es</language>';
 
     // Generar elementos del feed RSS
@@ -33,7 +35,7 @@
             <title>' . htmlentities($row['titulo']) . '</title>
             <description>' . htmlentities($row['contenido']) . '</description>
             <pubDate>' . date("D, d M Y H:i:s O", strtotime($row['fecha_publicacion'])) . '</pubDate>
-            <link>http://tiendaadopciones/noticia/' . $row['id'] . '</link><br><br>
+            <link>http://tiendaadopciones/noticia/' . $row['id'] . '</link>
         </item>';
     }
 

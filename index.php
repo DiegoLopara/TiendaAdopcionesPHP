@@ -1,5 +1,7 @@
 <?php
-header("Location:Vistas/login.php");
+session_start();
+
+header("Location:Controladores/Controlador.php");
 exit();
 
 ?>

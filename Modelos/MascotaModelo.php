@@ -262,6 +262,20 @@ class MascotaModelo
         }
     }
 
+    public function eliminarMascotaPorID($id)   {
+        // Obtén la información de la mascota antes de eliminarla
+        $mascotaAEliminar = $this->obtenerMascotaPorID($id);
+        if ($mascotaAEliminar) {
+            // La mascota existe, procede con la eliminación
+            $sql = "DELETE FROM mascotas WHERE id=?";
+            $parametros = array($id);
+            $resultado = $this->db->ejecutarConsulta($sql, $parametros);
+            return $resultado;
+        }else{
+            return false;
+        }
+    }
+
     public function importarDatosDesdeXML($rutaXml)
     {
 

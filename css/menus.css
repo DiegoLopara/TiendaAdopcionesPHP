@@ -16,14 +16,14 @@ body {
 
 th {
     color: #FF007F;
-    font-size: 18px;
+    text-shadow: 1px 1px 1px #000;
+    font-size: 20px;
 }
 
 /* Estilo para la barra de navegación */
 nav {
     background-color: #AA8F66;
     color: #fff;
-    padding: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,15 +34,18 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size:18px;
+    font-size: 18px;
     gap: 10px;
     padding: 10px;
+    text-shadow: 1px 1px 1px #000;
 }
 
 .conexion {
     background-color: #fff;
     color: #FF007F;
-    font-size: 18px;
+    font-size: 14px;
+    border:2px solid palevioletred;
+    padding:5px;
 }
 
 nav img {
@@ -53,7 +56,7 @@ nav img {
 
 .logo-usuario {
     border-radius: 50%;
-    border: 1px solid black;
+    border: 3px solid black;
 }
 
 .enlaces {
@@ -70,23 +73,26 @@ nav img {
     flex-grow: 4;
     gap: 10px;
     justify-content: center;
-    padding: 10px;
+    padding: 5px;
     background-color: #AA8F66;
 }
 
 .campo-busqueda {
     color: white;
     font-weight: bold;
-    text-align:center;
+    text-align: center;
+  
+
 }
 
 .busqueda select {
-    width: 80%;
+    width: 60%;
     padding: 5px;
     box-sizing: border-box;
     border: 3px solid #AA8F66;
     border-radius: 5px;
-    background-color:white;
+    border:2px solid palevioletred;
+    background-color: white;
     font-family: 'Nunito', sans-serif;
     text-align: center;
     font-size: 15px;
@@ -95,6 +101,8 @@ nav img {
 a {
     text-decoration: none;
     margin: 10px;
+    color: #fff; 
+    text-shadow: 1px 1px 1px #000;
 }
 
 a:hover {
@@ -147,7 +155,7 @@ button:hover {
     border: 1px solid #AA8F66;
     padding: 20px;
     text-align: center;
-    border:palevioletred  1px solid;
+    border: palevioletred 1px solid;
 }
 
 /* Grid funciones de administrador */

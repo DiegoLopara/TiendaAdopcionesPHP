@@ -20,7 +20,7 @@ $ultimaConexion = isset($_COOKIE['ultima_conexion']) ? $_COOKIE['ultima_conexion
         <div class="bienvenido">
             <img src="../img/working.png" class="logo-usuario">
             <h4 class="title">Bienvenido <?php echo isset($_SESSION['identificador']) ? $_SESSION['identificador'] : '';?></h4>
-            <h5 class="conexion">Ultima conexión: <?php echo isset($_COOKIE['ultima_conexion']) ? $_COOKIE['ultima_conexion'] : '' ?></h5>
+            <h5 class="conexion">Ultima conexión: <?php echo $_SESSION['ultima_conexion_$id'];  ?></h5>
         </div>
         <div class="enlaces">
             <ul>

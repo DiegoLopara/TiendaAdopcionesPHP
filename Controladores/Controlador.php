@@ -24,7 +24,6 @@ class Controlador
     {
 
         if (isset($_POST['login'])) {
-            $this->clearSessionMessages();
             $this->login();
         } elseif (isset($_POST['addCarrito'])) {
             $this->clearSessionMessages();
@@ -56,21 +55,18 @@ class Controlador
         } elseif (isset($_GET['accion']) && $_GET['accion'] === 'cerrar_sesion') {
 
             $this->cerrarSesion();
-        } else {
-            header("Location: ../Vistas/login.php");
-            exit();
         }
     }
-
     //1.Login
     private function login()
     {
+
         $identificador = isset($_POST['identificador']) ? $_POST['identificador'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
         $role = isset($_POST['role']) ? $_POST['role'] : '';
 
         if (empty($identificador) || empty($password) || empty($role)) {
-            $this->setErrorMessage("Debes rellenar todos los campos");
+            $_SESSION['mensaje_login'] = "Introduce todos los campos";
             $this->redirectTo('../Vistas/login.php');
         } else {
 
@@ -84,16 +80,26 @@ class Controlador
                     $_SESSION['id'] = $usuario->id;
                     $_SESSION['correo'] = $usuario->correo;
 
-                    $this->usuarioModelo->actualizarUltimaConexion($usuario->id);
+                    //Obtener la fecha actual desde la cookie si existe
+                    $id = $_SESSION['id'];
+                    $ultimaConexionActualizada = isset($_COOKIE['ultima_conexion_$id']) ? $_COOKIE['ultima_conexion_$id'] : ' ';
+
+                    // Si la cookie no existe, actualizar la última conexión.
+                    if (empty($ultimaConexion)) {
+                        $ultimaConexion = $this->usuarioModelo->actualizarUltimaConexion($id);
+                    }
+
+                    $_SESSION['ultima_conexion_$id'] = $ultimaConexionActualizada;
+
 
                     //Redirigir segun el rol
                     $this->redirectTo($usuario->role == 'usuario' ? "../Vistas/menu_principal.php" : "../Vistas/menu_admin.php");
                 } else {
-                    $this->setErrorMessage("Usuario o contraseña incorrectos.");
+                    $_SESSION['mensaje_login'] = "Usuario o contraseña incorrectos.";
                     $this->redirectTo("../Vistas/login.php");
                 }
             } catch (PDOException $e) {
-                $this->setErrorMessage("Error al comprobar el usuario: " . $e->getMessage());
+                $_SESSION['mensaje_login'] = "Error en la operación de base de datos: " . $e->getMessage();
                 $this->redirectTo("../Vistas/login.php");
             }
         }
@@ -135,13 +141,15 @@ class Controlador
         $carrito = $this->carritoModelo->mostrarAnimalesEnCarrito($usuario_id);
         $_SESSION['carrito'] = $carrito;
         $numeroElementosCarrito = count($carrito);
-        $_SESSION['elementosCarrito'] = $numeroElementosCarrito;
+        
 
 
         if (empty($carrito)) {
             $_SESSION['mensaje'] = "El carrito está vacío.";
-        } else{
+            $_SESSION['elementosCarrito'] = $numeroElementosCarrito;
+        } else {
             $_SESSION['mensaje'] = "La mascota se ha eliminado del carrito.";
+            $_SESSION['elementosCarrito'] = $numeroElementosCarrito=0;
         }
         include_once('../Vistas/lista_mascotas.php');
         exit();
@@ -169,7 +177,7 @@ class Controlador
         include_once('../Vistas/mostrar_busqueda.php');
         exit();
     }
-    
+
     //FUNCIONES DE ADMINISTRADOR
     //1.Inserta en la BD.
     private function insertar()
@@ -359,28 +367,25 @@ class Controlador
 
             $this->carritoModelo->actualizarEstadoMascotaCarrito($mascota_id, "adoptado");
             $_SESSION['mensaje'] = "Compra procesada con éxito. Gracias por adoptar.❤️";
+               // Eliminar la mascota del carrito y de la base de datos
+               $this->carritoModelo->eliminarMascotaCarrito($mascota_id);
+               $this->mascotaModelo->eliminarMascotaPorID($mascota_id);
+
+                   // Actualizar la variable de sesión con el nuevo número de elementos en el carrito
+            $numeroElementosCarrito = count($this->carritoModelo->mostrarAnimalesEnCarrito($usuario_id));
+            $_SESSION['elementosCarrito'] = $numeroElementosCarrito;
 
             include_once('../Vistas/pagina_final.php');
-
-
-            if($mascota->estado="adoptado"){
-                $this->carritoModelo->eliminarMascotaCarrito($usuario_id,$mascota_id);
-                $mascotaModelo->eliminarMascota($mascota_id);
-            }
-
-            //Eliminar los animales del carrito y de la BD que han sido adoptados.
-            // foreach ($mascotas as $mascotaCarrito) {
-            // $mascotaCompleta = $mascotaModelo->obtenerMascotaPorID($mascotaCarrito->mascota_id);
-
-            // if($mascotaCompleta->estado="adoptado"){
-            // $carritoModelo->eliminarMascotaCarrito($usuario_id,$mascotaCarrito->id);
-            // $mascotaModelo->eliminarMascota($mascotaCarrito->mascota_id);
-            // }
-            // }
+         
+            
         } else {
             echo "<p>El número de tarjeta no es válido. Pruebe otra vez</p>";
         }
-    }
+}
+
+
+
+
 
     //Cerrar sesión
     private function cerrarSesion()
@@ -417,5 +422,5 @@ class Controlador
 }
 
 
-$controlador = new Controlador();
-$controlador->procesarAccion();
+    $controlador = new Controlador();
+    $controlador->procesarAccion();

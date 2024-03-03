@@ -1,10 +1,7 @@
 <?php
-
 include_once('../Conexion/Database.php');
-
 class UsuarioModelo
 {
-
     private $db;
     private $usuarios;
 
@@ -28,19 +25,15 @@ class UsuarioModelo
     public function actualizarUltimaConexion($id)
     {
         //Obtener la fecha actual desde la cookie si existe
-        $fechaActual =date("l, j F Y H:i:s");
-        
-        //Actualiza la base de datos
-        $sql = "UPDATE usuarios SET ultima_conexion =:ultima_conexion WHERE id = :id";
-        $parametros = array(':id' => $id,':ultima_conexion' => $fechaActual);
-        try{
-            $this->db->ejecutarConsulta($sql, $parametros);
-        }catch(Exception $e){
-            echo "Error al actualizar la ultima conexion" . $e->getMessage();
-        }
-
-        setcookie('ultima_conexion', $fechaActual, time() + 3600, '/');
+        $fechaActual =date("Y-m-d H:i:s");
+        setcookie('ultima_conexion_$id', $fechaActual, time() + 36000, '/');
+        return $fechaActual;
     }
+
+
+
+
+
 
 
 

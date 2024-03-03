@@ -45,10 +45,18 @@ class PagoModelo
 
     public function verificarTarjetaCredito($numero, $fecha_vencimiento, $cvv)
     {
-
         $luhn = new self();
-
-        if ($luhn->algoritmoLuhn($numero)) {
+    
+        // Verificar el algoritmo de Luhn
+        if (!$luhn->algoritmoLuhn($numero)) {
+            return false;
+        }
+    
+        // Verificar la fecha de vencimiento
+        $fecha_actual = new DateTime();
+        $fecha_vencimiento_obj = DateTime::createFromFormat('m/y', $fecha_vencimiento);
+    
+        if ($fecha_vencimiento_obj && $fecha_vencimiento_obj > $fecha_actual) {
             return true;
         } else {
             return false;

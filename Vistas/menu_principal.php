@@ -33,13 +33,12 @@ $mascotaModelo = new MascotaModelo();
         <div class="bienvenido">
             <img src="../img/working.png" class="logo-usuario">
             <h4 class="title">Bienvenido <?php echo $_SESSION['identificador']; ?></h4>
-            <h5 class="conexion">Ultima conexión: <?php echo $_COOKIE['ultima_conexion']; ?></h5>
+            <h5 class="conexion">⌚ Ultima conexión: <?php echo $_SESSION['ultima_conexion_$id']; ?></h5>
         </div>
         <div class="enlaces">
             <ul>
-                <a href="../xml/noticiasRSS.php" target="_blank"><img src="../img/rss4.png">RSS Feed</a>
+                <a href="../xml/noticiasRSS.php" target="_blank"><img src="../img/rss4.png"></a>
                 <a href="./lista_mascotas.php"><img src="../img/cart.png"></a>
-
                 <a href="../Controladores/Controlador.php?accion=cerrar_sesion"><img src="../img/exit6.png">Logout</a>
             </ul>
         </div>
@@ -95,9 +94,9 @@ $mascotaModelo = new MascotaModelo();
     </div>
     <?php
     // Verificar si hay un mensaje y mostrarlo
-    if (isset($_SESSION['mensaje'])) {
-        $mensaje =$_SESSION['mensaje'];
-        echo "<div class='mensaje'>$mensaje</div>";
+    if (isset($_SESSION['mensaje_menu'])) {
+        $mensaje =$_SESSION['mensaje_menu'];
+        echo "<div class='mensaje_menu'>$mensaje</div>";
     }
     ?>
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mascotas>
     <mascota id="67" foto="img/47.jpg">
-        <nombre>Snaky</nombre>
-        <tipo>Serpiente</tipo>
+        <nombre>Snorlax</nombre>
+        <tipo>Reptiliano</tipo>
         <raza>cobra</raza>
         <edad>1</edad>
         <id_dueño>2</id_dueño>
@@ -11,9 +11,9 @@
     </mascota>
 
     <mascota id="68" foto="img/48.jpg">
-        <nombre>Kunfi</nombre>
-        <tipo>Oso</tipo>
-        <raza>Panda</raza>
+        <nombre>Kunfitado</nombre>
+        <tipo>Cagarro</tipo>
+        <raza>Gordo</raza>
         <edad>2</edad>
         <id_dueño>1</id_dueño>
         <color>blanco y negro</color>
